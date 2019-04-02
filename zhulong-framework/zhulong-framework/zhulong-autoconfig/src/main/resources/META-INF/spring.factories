@@ -1,0 +1,8 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.zhulong.framework.autoconfig.CommonAutoConfiguration,\
+com.zhulong.framework.autoconfig.ZhulongLockAutoConfiguration,\
+com.zhulong.framework.autoconfig.RocketMQConsumerConfiguration,\
+com.zhulong.framework.autoconfig.RocketMQProduceConfiguration,\
+com.zhulong.framework.autoconfig.elasticjob.ElasticJobAutoConfiguration,\
+com.zhulong.framework.autoconfig.AuthCommonAutoConfig,\
+com.zhulong.framework.autoconfig.druid.DruidDataSourceAutoConfigure

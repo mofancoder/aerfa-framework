@@ -1,0 +1,20 @@
+
+spring:
+  application:
+    name: auth
+  profiles:
+    active: dev
+
+#apollo配置
+app:
+  id: zhulong-auth
+
+apollo:
+  bootstrap:
+    enabled: true
+    namespaces: application,framework.eureka.security,framework.eureka.client,framework.redis.client,framework.feign,framework.zipkin
+
+login:
+  token:
+    expire:
+      time: 30

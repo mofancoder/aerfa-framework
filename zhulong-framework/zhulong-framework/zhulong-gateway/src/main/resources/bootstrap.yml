@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: zhulong-gateway
+  profiles:
+    active: dev
+
+app:
+  id: gateway
+
+apollo:
+  bootstrap:
+    enabled: true
+    namespaces: application,framework.eureka.security,framework.eureka.client,framework.zipkin
+
+
+

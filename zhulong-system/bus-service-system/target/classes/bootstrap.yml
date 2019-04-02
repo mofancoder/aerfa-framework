@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: bus-service-system
+  profiles:
+    active: dev
+
+  servlet:
+    multipart:
+      max-file-size: 1024Mb
+      max-request-size: 1024Mb
+app:
+  id: bus-service-system
+
+apollo:
+  bootstrap:
+    enabled: true
+    namespaces: application,framework.eureka.security,framework.eureka.client,framework.feign,framework.zipkin
+
+#可删除，用于示例代码
+rocketmq:
+  namesrvAddr: 10.30.30.60:9876
+  consumer:
+    groupName: ${spring.application.name}
+    topicTag:
+      base-service-system:
+        - user-create
+
+zhulong:
+  #配置后，自动装配ZhuLongLock
+  lock:
+    zk:
+      addr: 10.30.30.60:2181
+  #配置开启用户认证，业务层配置，识别@AuthParam注解。
+  auth:
+    enable: true
+  #开启自动装配GlobalExceptionAdvise
+  global:
+    exception:
+      advise:
+        enable: true
+  white-ip:
+  #配置为true，可开启ip白名单过滤
+    enable: false
+   # value: 10.40.40.*

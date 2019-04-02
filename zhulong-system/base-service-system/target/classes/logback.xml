@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration >
+
+    <contextName>base-service-system</contextName>
+
+    <conversionRule conversionWord="ip" converterClass="com.zhulong.framework.common.logback.IpConverter" />
+
+    <conversionRule conversionWord="appName" converterClass="com.zhulong.framework.common.logback.AppNameConverter" />
+
+    <conversionRule conversionWord="module" converterClass="com.zhulong.framework.common.logback.ModuleConverter" />
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%ip %appName %module %d{HH:mm:ss} %-5level %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>bustestservice.log</file>
+        <!-- TimeBasedRollingPolicy既为滚动策略，也为触发策略 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>base-service-system.log.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%ip %appName %module %d{HH:mm:ss} %-5level %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="console"/>
+        <!--
+        <appender-ref ref="file" />
+        -->
+    </root>
+</configuration>

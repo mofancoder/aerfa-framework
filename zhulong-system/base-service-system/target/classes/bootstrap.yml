@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: base-service-system
+  profiles:
+    active: dev
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  zipkin:
+    enabled: true
+    sender:
+      type: web
+  datasource:
+    druid:
+      stat-view-servlet:
+        enabled: true
+        login-username: zhulong
+        login-password: truelore
+
+  elasticjob:
+    zookeeper:
+      server-lists: 10.30.30.60:2181
+#     namespace: elastic-job-spring-boot-stater-demo
+      #简单作业配置
+    simples:
+      #spring简单作业示例配置
+      spring-simple-job:
+        #配置简单作业，必须实现com.dangdang.ddframe.job.api.simple.SimpleJob
+        job-class: com.zhulong.framework.localmessage.jpa.job.SendMsgJob
+        cron: '* * * * * ?'
+        sharding-total-count: 2
+#       sharding-item-parameters: 0=Beijing,1=Shanghai,2=Guangzhou
+        #配置监听器
+#       listener:
+#       #配置每台作业节点均执行的监听，必须实现com.dangdang.ddframe.job.lite.api.listener.ElasticJobListener
+#       listener-class: com.zen.spring.boot.demo.elasticjob.listener.MyElasticJobListener
+
+app:
+  id: base-service-system
+
+apollo:
+  bootstrap:
+    enabled: true
+    namespaces: application,framework.eureka.security,framework.eureka.client,framework.zipkin,framework.rocketmq
+
+#可删除，用于示例代码
+rocketmq:
+  namesrvAddr: 10.30.30.60:9876
+  produce:
+    groupName: ${spring.application.name}
+
+zhulong:
+  white-ip:
+    #配置为true，可开启ip白名单过滤
+#    enable: true
+    value: 10.40.40.228
+
